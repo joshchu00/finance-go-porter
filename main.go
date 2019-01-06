@@ -26,7 +26,7 @@ func init() {
 	logger.Info(fmt.Sprintf("%s: %s", "Environment", config.Environment()))
 	logger.Info(fmt.Sprintf("%s: %s", "CassandraHosts", config.CassandraHosts()))
 	logger.Info(fmt.Sprintf("%s: %s", "CassandraKeyspace", config.CassandraKeyspace()))
-	logger.Info(fmt.Sprintf("%s: %s", "PorterV1Address", config.PorterV1Address()))
+	logger.Info(fmt.Sprintf("%s: %s", "PorterV1Port", config.PorterV1Port()))
 }
 
 var environment string
@@ -53,7 +53,7 @@ func process() {
 
 	// starting porter v1 server
 	var listen net.Listener
-	listen, err = net.Listen("tcp", config.PorterV1Address())
+	listen, err = net.Listen("tcp", fmt.Sprintf(":%s", config.PorterV1Port()))
 	if err != nil {
 		logger.Panic(fmt.Sprintf("net.Listen %v", err))
 	}

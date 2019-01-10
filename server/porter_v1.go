@@ -20,17 +20,19 @@ func (s *PorterV1Server) GetSymbol(ctx context.Context, in *pb.GetSymbolRequest)
 		return
 	}
 
+	var name string
 	records := make([]*pb.Record, 0)
 
-	for _, r := range rs {
+	for i, r := range rs {
+
+		if i == len(rs)-1 {
+			name = r.Name
+		}
+
 		records = append(
 			records,
 			&pb.Record{
-				Exchange: r.Exchange,
-				Symbol:   r.Symbol,
-				Period:   r.Period,
 				Datetime: datetime.GetTimestamp(r.Datetime),
-				Name:     r.Name,
 				Open:     r.Open.String(),
 				High:     r.High.String(),
 				Low:      r.Low.String(),
@@ -41,7 +43,11 @@ func (s *PorterV1Server) GetSymbol(ctx context.Context, in *pb.GetSymbolRequest)
 	}
 
 	out = &pb.GetSymbolReply{
-		Records: records,
+		Exchange: in.Exchange,
+		Symbol:   in.Symbol,
+		Period:   in.Period,
+		Name:     name,
+		Records:  records,
 	}
 
 	return

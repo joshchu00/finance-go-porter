@@ -2,7 +2,7 @@ module github.com/joshchu00/finance-go-porter
 
 require (
 	github.com/grpc-ecosystem/grpc-gateway v1.6.3 // indirect
-	github.com/joshchu00/finance-go-common v0.1.1-0.20190106132502-1d83b8619061
+	github.com/joshchu00/finance-go-common v0.1.1-0.20190210090047-2d5df5f0830d
 	github.com/joshchu00/finance-protobuf v0.1.1-0.20190110032506-7ccfb2f0b013
 	github.com/spf13/afero v1.2.0 // indirect
 	github.com/spf13/viper v1.3.1 // indirect

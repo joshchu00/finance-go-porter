@@ -23,17 +23,17 @@ func init() {
 	logger.Init(config.LogDirectory(), "porter")
 
 	// log config
-	logger.Info(fmt.Sprintf("%s: %s", "Environment", config.Environment()))
+	logger.Info(fmt.Sprintf("%s: %s", "EnvironmentName", config.EnvironmentName()))
 	logger.Info(fmt.Sprintf("%s: %s", "CassandraHosts", config.CassandraHosts()))
 	logger.Info(fmt.Sprintf("%s: %s", "CassandraKeyspace", config.CassandraKeyspace()))
 	logger.Info(fmt.Sprintf("%s: %s", "PorterV1Port", config.PorterV1Port()))
 }
 
-var environment string
+var environmentName string
 
 func process() {
 
-	if environment == config.EnvironmentProd {
+	if environmentName == config.EnvironmentNameProd {
 		defer func() {
 			if err := recover(); err != nil {
 				logger.Panic(fmt.Sprintf("recover %v", err))
@@ -70,11 +70,11 @@ func main() {
 
 	logger.Info("Starting porter...")
 
-	// environment
-	switch environment = config.Environment(); environment {
-	case config.EnvironmentDev, config.EnvironmentTest, config.EnvironmentStg, config.EnvironmentProd:
+	// environment name
+	switch environmentName = config.EnvironmentName(); environmentName {
+	case config.EnvironmentNameDev, config.EnvironmentNameTest, config.EnvironmentNameStg, config.EnvironmentNameProd:
 	default:
-		logger.Panic("Unknown environment")
+		logger.Panic("Unknown environment name")
 	}
 
 	for {
@@ -83,7 +83,7 @@ func main() {
 
 		time.Sleep(3 * time.Second)
 
-		if environment != config.EnvironmentProd {
+		if environmentName != config.EnvironmentNameProd {
 			break
 		}
 	}

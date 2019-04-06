@@ -14,8 +14,8 @@ type PorterV1Server struct {
 
 func (s *PorterV1Server) GetSymbol(ctx context.Context, in *pb.GetSymbolRequest) (out *pb.GetSymbolReply, err error) {
 
-	var rs []*cassandra.Record
-	rs, err = s.CassandraClient.SelectAllRecord(in.Exchange, in.Symbol, in.Period)
+	var rrs []*cassandra.RecordRow
+	rrs, err = s.CassandraClient.SelectRecordRowsByPartitionKey(&cassandra.RecordPartitionKey{Exchange: in.Exchange, Symbol: in.Symbol, Period: in.Period})
 	if err != nil {
 		return
 	}
@@ -23,9 +23,9 @@ func (s *PorterV1Server) GetSymbol(ctx context.Context, in *pb.GetSymbolRequest)
 	var name string
 	records := make([]*pb.Record, 0)
 
-	for i, r := range rs {
+	for i, r := range rrs {
 
-		if i == len(rs)-1 {
+		if i == len(rrs)-1 {
 			name = r.Name
 		}
 

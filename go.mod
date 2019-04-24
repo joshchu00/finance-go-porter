@@ -1,13 +1,11 @@
 module github.com/joshchu00/finance-go-porter
 
 require (
-	github.com/grpc-ecosystem/grpc-gateway v1.6.3 // indirect
-	github.com/joshchu00/finance-go-common v0.1.1-0.20190406065121-792f7109038a
-	github.com/joshchu00/finance-protobuf v0.1.1-0.20190110032506-7ccfb2f0b013
-	github.com/spf13/afero v1.2.0 // indirect
-	github.com/spf13/viper v1.3.1 // indirect
-	github.com/stretchr/testify v1.3.0 // indirect
-	golang.org/x/sys v0.0.0-20190109145017-48ac38b7c8cb // indirect
-	google.golang.org/grpc v1.17.0
-	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
+	github.com/golang/protobuf v1.3.1 // indirect
+	github.com/grpc-ecosystem/grpc-gateway v1.8.5 // indirect
+	github.com/joshchu00/finance-go-common v0.1.1-0.20190423133202-6d4c09dcebf3
+	github.com/joshchu00/finance-protobuf v0.1.1-0.20190423120400-a87280d79f66
+	google.golang.org/appengine v1.4.0 // indirect
+	google.golang.org/genproto v0.0.0-20190418145605-e7d98fc518a7 // indirect
+	google.golang.org/grpc v1.20.1
 )

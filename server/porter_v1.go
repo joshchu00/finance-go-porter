@@ -49,6 +49,7 @@ func (s *PorterV1Server) GetSymbol(ctx context.Context, in *pb.GetSymbolRequest)
 			tick = &pb.Tick{
 				Datetime: ts,
 			}
+			tickMap[ts] = tick
 		}
 
 		tick.Record = &pb.Record{
@@ -83,6 +84,7 @@ func (s *PorterV1Server) GetSymbol(ctx context.Context, in *pb.GetSymbolRequest)
 			tick = &pb.Tick{
 				Datetime: ts,
 			}
+			tickMap[ts] = tick
 		}
 
 		tick.Indicator = &pb.Indicator{
@@ -118,6 +120,7 @@ func (s *PorterV1Server) GetSymbol(ctx context.Context, in *pb.GetSymbolRequest)
 			tick = &pb.Tick{
 				Datetime: ts,
 			}
+			tickMap[ts] = tick
 		}
 
 		tick.Strategy = &pb.Strategy{
